@@ -41,12 +41,52 @@
     - ~~has a type~~
 
     ## Necessary Helper Methods:
-
+  Application
+    - not_logged_in?
+      - uses logged_in? function
+      - if user is not logged_in? redirects to root_path 
+      - use in all logged_in user-only views
     - current_user
-        - identifies current logged in user via `session[:user_id]`
-        - stores user object for logged in user
-    - logged_in?
-        - returns true if `session[:user_id]`
+      - identifies current logged in user via `session[:user_id]`
+      - stores user object for logged in user
     - owns_record?
         - returns true if `current_user.id` matches `params[:user_id]` of the current page
-        - used for checking whether a user can access certain pages. If they are logged in but do not own the record, throw an error and send them back to their own index page.
+        - used for checking whether a user can access certain pages. If they are logged in but do not own the record, throw an error and send them back to their own index page.    
+    - create_session(user)
+      - takes user as argument
+      - adds their user_id to the session    
+
+    ## Views / Routes
+    ### Root 
+      - Main login page (user#login) 
+    
+    ### User
+      - Log In (user#login) (Make Session Controller??)
+      - Sign Up (user#new) (+ user#create)
+      - Log Out (user#logout) (ditto Session Controller??)
+      - Show (user#show)
+      - Edit (user#edit) (+ user#update)
+      - Delete (user#delete)
+
+    ### Journals
+      - Index (journal#index)
+      - Show (journal#show)
+      - New (journal#new) (+ journal#create)
+      - Edit (journal#edit) (+ journal#update)
+      - Delete (journal#delete)
+
+    ### Entries 
+      - Show (entry#show)
+      - New (entry#new) (+ entry#create)
+      - Edit (entry#edit) (+ entry#update)
+      - Delete (entry#delete)
+
+    ### Partials
+      - User _form
+      - Entry _form
+      - Journal _form 
+
+    ### Layouts
+      - Main layout (header + footer)
+      - Journal layout
+      - Entry layout 
