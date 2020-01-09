@@ -1,16 +1,18 @@
-# One Line A Day Journal, Rails Portfolio Project for Flatiron School 
+# One Line A Day Journal:
+## Rails Portfolio Project for Flatiron School 
 
 ## Models:
 - User
-    - has many journals
-    - has many entries, through journals
+    - ~~has many journals~~
+    - ~~has many entries, through journals~~
+    - ~~has many moods, through entries ~~
     - can log in and log out, make journal entries, edit and delete their own entries
     - can log in and out with Facebook or Google
-    - has secure password
+    - ~~has secure password~~
     - can only view/access their own journals and entries
-    - has name
-    - has username
-    - has email
+    - ~~has name~~
+    - ~~has username~~
+    - ~~has email~~
 - Journal
     - belongs to user
     - has many entries
