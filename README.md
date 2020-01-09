@@ -1,5 +1,6 @@
-## Models:
+# One Line A Day Journal, Rails Portfolio Project for Flatiron School 
 
+## Models:
 - User
     - has many journals
     - has many entries, through journals
