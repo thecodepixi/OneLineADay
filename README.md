@@ -33,7 +33,7 @@
     - has one optional image (file upload)
     - has edit link
     - has delete link
-    - has nested route through journal (IE: `'user/:id/journal/:id/entry/:id'`)
+    - non-nested routes 
     - has show page, but no index (journal show page *is* an index of all entries)
   - Mood
     - ~~has many entries~~
