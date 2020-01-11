@@ -7,6 +7,6 @@ class User < ApplicationRecord
   validates :username, uniqueness: true, presence: true 
 
   has_many :journals 
-  has_many :entries, through: :journals
-  has_many :moods, through: :entries  
+  has_many :days, through: :journals
+  has_many :moods, through: :days  
 end

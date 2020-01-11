@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_09_013201) do
+ActiveRecord::Schema.define(version: 2020_01_11_002500) do
 
-  create_table "entries", force: :cascade do |t|
+  create_table "days", force: :cascade do |t|
     t.integer "user_id"
     t.integer "journal_id"
     t.integer "mood_id"

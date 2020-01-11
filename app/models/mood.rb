@@ -1,4 +1,4 @@
 class Mood < ApplicationRecord
-  has_many :entries
-  has_many :journals, through: :entries 
+  has_many :days
+  has_many :journals, through: :days 
 end
