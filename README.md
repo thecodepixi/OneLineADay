@@ -52,7 +52,7 @@
     - owns_record?
         - returns true if `current_user.id` matches `params[:user_id]` of the current page
         - used for checking whether a user can access certain pages. If they are logged in but do not own the record, throw an error and send them back to their own index page.    
-    - create_session(user)
+    - set_session(user)
       - takes user as argument
       - adds their user_id to the session    
 
