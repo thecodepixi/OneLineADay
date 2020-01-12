@@ -8,7 +8,13 @@ class UsersController < ApplicationController
   end 
 
   def login
-    
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
+      set_session(@user)
+      redirect_to user 
+    else 
+      redirect_to root_path, alert: "Username or Password incorrect. Please try again."
+    end 
   end 
 
   def logout
