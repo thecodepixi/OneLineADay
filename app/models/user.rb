@@ -10,3 +10,4 @@ class User < ApplicationRecord
   has_many :days, through: :journals
   has_many :moods, through: :days  
 end
+  
