@@ -37,8 +37,8 @@
     - has one optional image (file upload)
     - has edit link
     - has delete link
-    - non-nested routes 
-    - has show page, but no index (journal show page *is* an index of all entries)
+    - ~~non-nested routes~~ 
+    - ~~has show page, but no index~~ (journal show page *is* an index of all journal.entries)
   - Mood
     - ~~has many entries~~
     - ~~has many journals through: entries~~

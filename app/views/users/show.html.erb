@@ -1,7 +1,5 @@
 <%= render 'flash' %>
 
-<h1>Eventually the <%= @user.username %> show page</h1>
-<%= @user.name %><br>
-<%= @user.email %><br>
-<%= link_to "Edit Your Account", edit_user_path(@user) %>
-<%= link_to "Delete Your Account", @user, method: 'delete' %>
+<p><%= link_to "Your Journals", user_journals_path(@user) %>
+<p><%= link_to "Edit Your Account", edit_user_path(@user) %>
+<p><%= link_to "Delete Your Account", @user, method: 'delete' %>
