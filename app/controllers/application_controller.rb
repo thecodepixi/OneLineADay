@@ -4,17 +4,7 @@ class ApplicationController < ActionController::Base
     session[:user_id] = user.id 
   end 
 
-  #persist current logged in User object
-  def current_user
-    @user ||= User.find_by(id: session[:user_id])
-  end 
-
-  #returns true when a session has been set
-  def logged_in?
-    true if session[:user_id]
-  end 
-
-  #TODO checks if current_user owns the current record 
+  #TODO checks if current_user owns the current record. Maybe this belongs in Users Controller?
   def owns_record?
     #figure this out later
   end 
