@@ -58,7 +58,8 @@
         - used for checking whether a user can access certain pages. If they are logged in but do not own the record, throw an error and send them back to their own index page.    
     - set_session(user)
       - takes user as argument
-      - adds their user_id to the session    
+      - adds their user_id to the session   
+    - **Need method for redirect and alert when user is not logged in** 
 
     ## Views / Routes
     ### Root 
