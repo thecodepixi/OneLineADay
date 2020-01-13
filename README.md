@@ -6,7 +6,9 @@
     - ~~has many journals~~
     - ~~has many entries, through journals~~
     - ~~has many moods, through entries~~
-    - can log in and log out, make journal entries, edit and delete their own entries
+    - ~~can log in and log out, edit and delete account~~
+    - can make, edit, and delete journals 
+    - can make, edit, and delete journal entries 
     - can log in and out with Facebook or Google
     - ~~has secure password~~
     - can only view/access their own journals and entries
@@ -21,14 +23,14 @@
     - ~~has a mantra~~
     - has a cover image (file upload)
     - journals cannot have more than one entry per day
-    - has nested routes through user (`'user/:id/journals'` && `'user/:id/journal/:id'`)
+    - ~~has nested routes through user (`'user/:id/journals'` && `'user/:id/journal/:id'`)~~
 - Entry
     - ~~belongs to journal~~
     - ~~belongs to mood~~
     - ~~belongs to user~~
     - title defaults to the day the entry is made
     - users cannot make more than one entry per day, per journal. (probably handled by journal model ?)
-    - ~~has content,~~ limited to 100 characters.
+    - ~~has content, limited to 100 characters.~~
     - ~~has a daily mood (to be chosen from a dropdown of set options) ((belongs to))~~
     - has one optional image (file upload)
     - has edit link
@@ -58,15 +60,14 @@
 
     ## Views / Routes
     ### Root 
-      - Main login page (user#login) 
+      - Main login page (user#index) 
     
     ### User
-      - Log In (user#login) (Make Session Controller??)
       - Sign Up (user#new) (+ user#create)
-      - Log Out (user#logout) (ditto Session Controller??)
+      - Log Out (user#logout) (link in navbar)
       - Show (user#show)
       - Edit (user#edit) (+ user#update)
-      - Delete (user#delete)
+      - Delete (user#destroy)
 
     ### Journals
       - Index (journal#index)
