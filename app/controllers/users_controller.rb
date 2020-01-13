@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       set_session(@user)
-      redirect_to user 
+      redirect_to @user 
     else 
       redirect_to root_path, alert: "Username or Password incorrect. Please try again."
     end 
@@ -33,6 +33,7 @@ class UsersController < ApplicationController
   def create 
     @user = User.new(user_params)
     if @user.save
+      set_session(@user)
       redirect_to @user
     else 
       render :new
@@ -40,12 +41,27 @@ class UsersController < ApplicationController
   end 
 
   def edit
+    if current_user.id = params[:id]
+      @user = current_user
+    else 
+      redirect_to root_path, alert: "You must be logged in to visit that page. Please log in and try again."
+    end 
   end 
   
   def update
+    @user = current_user
+    if @user.update(user_params)
+      redirect_to @user 
+    else 
+      render :edit
+    end 
   end 
 
   def delete
+    @user = User.find(params[:id])
+    @user.delete 
+
+    redirect_to root_path 
   end 
 
   private 

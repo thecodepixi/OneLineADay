@@ -15,5 +15,9 @@
     <%= f.label :password %>
     <%= f.password_field :password %>
   </div>
-    <%= f.submit "Create Account", class:"btn btn-primary"%>
+  <div class='form-group'>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+    <%= f.submit "Submit", class:"btn btn-primary"%>
 <% end %>
