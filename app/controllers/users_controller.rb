@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
 
   def index 
+    if logged_in? 
+      redirect_to user_path(current_user)
+    end 
   end 
 
   def show
@@ -18,6 +21,9 @@ class UsersController < ApplicationController
   end 
 
   def logout
+    session.delete :user_id
+
+    redirect_to root_path
   end 
 
   def new

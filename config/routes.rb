@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root 'users#index'
  
   post '/login', controller: 'users', action: 'login'
+
+  post '/logout', controller: 'users', action: 'logout'
   
   resources :users do 
     resources :journals do
