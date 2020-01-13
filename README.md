@@ -25,8 +25,10 @@
     - journals cannot have more than one entry per day
     - ~~has nested routes through user (`'user/:id/journals'` && `'user/:id/journal/:id'`)~~
 - Entry
+    - ~~join table for journals and moods~~
     - ~~belongs to journal~~
     - ~~belongs to mood~~
+    - accepts_nested_attributes for mood 
     - ~~belongs to user~~
     - title defaults to the day the entry is made
     - users cannot make more than one entry per day, per journal. (probably handled by journal model ?)
