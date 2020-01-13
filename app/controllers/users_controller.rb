@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       set_session(@user)
       redirect_to @user 
     else 
-      redirect_to root_path, alert: "Username or Password incorrect. Please try again."
+      redirect_to root_path, alert: "Username or Password not recognized. Please try again."
     end 
   end 
 
