@@ -51,17 +51,18 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to @user 
+      redirect_to @user, notice: "Your account has been updated."
     else 
       render :edit
     end 
   end 
 
-  def delete
+  def destroy
     @user = User.find(params[:id])
+    session.delete :user_id 
     @user.delete 
 
-    redirect_to root_path 
+    redirect_to root_path, notice: "Your account has been deleted."
   end 
 
   private 
