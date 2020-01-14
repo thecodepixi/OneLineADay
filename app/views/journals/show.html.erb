@@ -5,6 +5,6 @@
 <%= link_to "Delete This Journal", user_journal_path(@user, @journal), method: 'delete' %>
 <ul>
 <% @journal.days.each do |day| %>
-  <%= link_to day.created_at.strftime("%A, %B %d, %Y"), day %>
+  <%= link_to day.title_date, day %>
 <% end %>
 </ul>

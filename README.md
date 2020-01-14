@@ -7,8 +7,8 @@
     - ~~has many entries, through journals~~
     - ~~has many moods, through entries~~
     - ~~can log in and log out, edit and delete account~~
-    - can make, edit, and delete journals 
-    - can make, edit, and delete journal entries 
+    - ~~can make, edit, and delete journals~~
+    - can make, edit, and delete journal entries/days
     - can log in and out with Facebook or Google
     - ~~has secure password~~
     - can only view/access their own journals and entries
@@ -24,7 +24,7 @@
     - has a cover image (file upload)
     - journals cannot have more than one entry per day
     - ~~has nested routes through user (`'user/:id/journals'` && `'user/:id/journal/:id'`)~~
-- Entry
+- Day (Journal Entries)
     - ~~join table for journals and moods~~
     - ~~belongs to journal~~
     - ~~belongs to mood~~
@@ -79,18 +79,18 @@
       - Edit (journal#edit) (+ journal#update)
       - Delete (journal#delete)
 
-    ### Entries 
-      - Show (entry#show)
-      - New (entry#new) (+ entry#create)
-      - Edit (entry#edit) (+ entry#update)
-      - Delete (entry#delete)
+    ### Days 
+      - Show (days#show)
+      - New (days#new) (+ days#create)
+      - Edit (days#edit) (+ days#update)
+      - Delete (days#delete)
 
     ### Partials
       - User _form
-      - Entry _form
+      - Day _form
       - Journal _form 
 
     ### Layouts
       - Main layout (header + footer)
       - Journal layout
-      - Entry layout 
+      - Day layout 
