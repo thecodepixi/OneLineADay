@@ -1,0 +1,8 @@
+<% if @journal.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">Sorry, there was an error processing your journal...</h4>
+  <% @journal.errors.full_messages.each do |msg| %>
+    <li><%= msg %>
+  <% end %>
+  </div>
+<% end  %>

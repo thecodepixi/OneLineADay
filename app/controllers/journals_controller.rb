@@ -30,9 +30,18 @@ class JournalsController < ApplicationController
   end 
 
   def edit
+    @user = User.find_by(id: params[:user_id])
+    @journal = Journal.find_by(id: params[:id])
   end 
 
   def update
+    @user = User.find_by(id: params[:user_id])
+    @journal = Journal.find_by(id: params[:id])
+    if @journal.update(journal_params)
+      redirect_to user_journal_path(@user, @journal), notice: "Your journal was successfully updated."
+    else 
+      render :edit
+    end 
   end 
 
   def destroy
