@@ -23,7 +23,7 @@ class JournalsController < ApplicationController
     @user = User.find(params[:user_id])
     @journal = Journal.new(journal_params)
     if @journal.save 
-      redirect_to user_path(@user)
+      redirect_to user_journals_path(@user)
     else 
       render :new 
     end 
@@ -45,6 +45,11 @@ class JournalsController < ApplicationController
   end 
 
   def destroy
+    @user = User.find_by(params[:user_id])
+    @journal = Journal.find(params[:id])
+    @journal.delete 
+
+    redirect_to user_journals_path(@user), notice: "Journal successfully deleted."
   end 
 
   private 
