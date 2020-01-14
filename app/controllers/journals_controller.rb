@@ -31,13 +31,13 @@ class JournalsController < ApplicationController
   end 
 
   def edit
-    @user = User.find_by(id: params[:user_id])
     @journal = Journal.find_by(id: params[:id])
+    @user = @journal.user 
   end 
 
   def update
-    @user = User.find_by(id: params[:user_id])
     @journal = Journal.find_by(id: params[:id])
+    @user = User.find_by(params[:journal][:user_id])
     if @journal.update(journal_params)
       redirect_to user_journal_path(@user, @journal), notice: "Your journal was successfully updated."
     else 

@@ -1,8 +1,8 @@
-<%= form_for [@user, @journal] do |f| %>
+<%= form_for @journal do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
   <%= f.label :mantra %>
   <%= f.text_field :mantra %>
-  <%= f.hidden_field :user_id, value: @user.id %>
+  <%= f.hidden_field :user_id, value: @journal.user.id %>
   <%= f.submit %>
 <% end %>

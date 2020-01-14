@@ -8,12 +8,15 @@ Rails.application.routes.draw do
   post '/logout', controller: 'users', action: 'logout'
   
   resources :users do 
-    resources :journals, only: :index 
+    resources :journals, only: [:index, :show, :new, :create] 
   end 
 
-  resources :journals, except: :index do
-    resources :days 
+  resources :journals, only: [:edit, :update, :destroy] do
+    resources :moods, only: [:index, :show]
+    resources :days, only: [:index, :show, :new, :create]
   end
+
+  resources :days, only: [:edit, :update, :destroy]
 
 end
 
