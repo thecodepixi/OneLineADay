@@ -3,8 +3,10 @@
 <h2><em><%= @journal.mantra %></em></h2>
 <%= link_to "Edit This Journal", edit_user_journal_path(@user, @journal) %>
 <%= link_to "Delete This Journal", user_journal_path(@user, @journal), method: 'delete' %>
+<h3>Your Most Recent Entries:</h3>
 <ul>
-<% @journal.days.each do |day| %>
-  <%= link_to day.title_date, day %>
+<% @recent_days.each do |day| %>
+  <li><%= link_to day.title_date, day %></li>
 <% end %>
 </ul>
+<%= link_to "View All Previous Entries", user_journal_days_path(@user, @journal) %>

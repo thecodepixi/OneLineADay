@@ -5,4 +5,9 @@ class DaysController < ApplicationController
     @journal = @user.journals.find(params[:journal_id])
   end 
 
+  def show 
+    @day = Day.find_by(params[:id])
+    @user = @day.user 
+  end 
+
 end

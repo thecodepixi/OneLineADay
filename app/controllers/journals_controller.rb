@@ -12,6 +12,7 @@ class JournalsController < ApplicationController
   def show 
     @user = User.find_by(id: params[:user_id])
     @journal = Journal.find_by(id: params[:id])
+    @recent_days = @journal.days.order('created_at desc').limit(3)
   end 
 
   def new

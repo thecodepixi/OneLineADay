@@ -1,2 +1,6 @@
-<%= @journal.title %>: 
-<%= %>
+<h1><%= @journal.title %>: </h1>
+<ul>
+  <% @journal.days.each do |day| %>
+    <li><%= link_to day.title_date, day %></li>
+  <% end %>
+</ul>
