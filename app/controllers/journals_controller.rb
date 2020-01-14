@@ -1,11 +1,17 @@
 class JournalsController < ApplicationController
 
   def index 
+    if !logged_in?
+      redirect_to root_path
+    end 
+
     @user = current_user 
     @journals = current_user.journals
   end 
 
   def show 
+    @user = User.find_by(id: params[:user_id])
+    @journal = Journal.find_by(id: params[:id])
   end 
 
   def new

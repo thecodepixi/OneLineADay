@@ -1,0 +1,9 @@
+<h1><%= @journal.title %></h1>
+<%= link_to "Edit This Journal", edit_user_journal_path(@user, @journal) %>
+<a href="#"> "Delete This Journal"</a>
+<h2><em><%= @journal.mantra %></em></h2>
+<ul>
+<% @journal.days.each do |day| %>
+  <%= link_to day.created_at.strftime("%A, %B %d, %Y"), day %>
+<% end %>
+</ul>
