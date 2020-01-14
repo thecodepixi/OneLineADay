@@ -10,4 +10,8 @@ class DaysController < ApplicationController
     @user = @day.user 
   end 
 
+  def new 
+    
+  end 
+
 end
