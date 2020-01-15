@@ -2,22 +2,35 @@ class SessionsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create
 
   def create 
-    @user = User.find_or_initialize_by(auth_hash: "#{auth_hash}") 
+    # find User by their auth_hash details
+    @user = User.find_or_initialize_by(auth_hash: "#{auth_hash[:info]}") 
+    # if User does not already exist in the DB, setup a new user account 
     if @user.id.nil? 
-      @user.uid = auth_hash[:uid]
-      @user.name = auth_hash[:info][:name]
-      @user.username = auth_hash[:info][:name]
-      #set password to a random integer string, because password is required 
+      if auth_hash[:provider] == "developer"
+        @user.uid = auth_hash[:uid]
+        @user.name = auth_hash[:info][:name]
+        @user.username = auth_hash[:info][:name]
+      elsif auth_hash[:provider] == "github"
+        @user.uid = auth_hash[:extra][:raw_info][:id]
+        @user.name = auth_hash[:info][:name]
+        @user.username = auth_hash[:info][:nickname]
+      elsif auth_hash[:provider] == "facebook"
+      end 
+      # set password to a random integer string, because password is required. 
+      # User can reset password after creating their account.
       @user.password = "#{rand 10**10}"
       @user.save 
     end 
+    # log the user in by creating a user session 
     set_session(@user)
 
+    # send user to their homepage 
     redirect_to @user 
   end 
 
   private 
 
+  # this method creates a hash from the omniauth.auth hash containing their account details 
   def auth_hash
     request.env['omniauth.auth']
   end 
