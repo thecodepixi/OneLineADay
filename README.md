@@ -28,9 +28,10 @@
     - ~~join table for journals and moods~~
     - ~~belongs to journal~~
     - ~~belongs to mood~~
-    - accepts_nested_attributes for mood 
+    ~~accepts_nested_attributes for mood~~
+    - ~~user can create new mood when making their daily entry~~
     - ~~belongs to user~~
-    - title defaults to the day the entry is made
+    - ~~title defaults to the day the entry is made~~
     - users cannot make more than one entry per day, per journal. (probably handled by journal model ?)
     - ~~has content, limited to 100 characters.~~
     - ~~has a daily mood (to be chosen from a dropdown of set options) ((belongs to))~~

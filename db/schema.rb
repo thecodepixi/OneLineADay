@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_15_014550) do
+ActiveRecord::Schema.define(version: 2020_01_15_212948) do
 
   create_table "days", force: :cascade do |t|
     t.integer "user_id"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 2020_01_15_014550) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "auth_hash"
+    t.string "uid"
   end
 
 end

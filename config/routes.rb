@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   resources :days, only: [:edit, :update, :destroy]
 
+  match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+
 end
 
 # Routes I Want: 
