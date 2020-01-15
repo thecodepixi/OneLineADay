@@ -1,7 +1,10 @@
-<% if @day.errors.any? %>
+<% if @day.errors.any? || @mood.errors.any? %>
   <div class="alert alert-danger" role="alert">
   <h4 class="alert-heading">Sorry, there was an error with your day update...</h4>
   <% @day.errors.full_messages.each do |msg| %>
+    <li><%= msg %>
+  <% end %>
+  <% @mood.errors.full_messages.each do |msg| %>
     <li><%= msg %>
   <% end %>
   </div>

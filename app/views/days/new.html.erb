@@ -4,7 +4,11 @@
   <%= f.label :description, "Describe Your Day: (150 characters max)" %>
   <%= f.text_field :description %><br>
   <%= f.label :mood_id, "Choose Your Mood:" %>
-  <%= f.collection_select :mood_id, Mood.all, :id, :mood_type %><br>
+  <%= f.collection_select :mood_id, Mood.all, :id, :mood_type, include_blank: '' %><br>
+  <%= f.fields_for :mood do |m| %>
+    <%= m.label :mood_type, "Create New Mood:"%>
+    <%= m.text_field :mood_type %>
+  <% end %><br>
   <%= f.hidden_field :journal_id, value: @journal.id %>
   <%= f.hidden_field :user_id, value: @user.id %>
   <%= f.submit "Create Daily Update" %>
