@@ -6,7 +6,7 @@
 <h3>Your Most Recent Entries:</h3>
 <ul>
 <% @recent_days.each do |day| %>
-  <li><%= link_to day.title_date, day %></li>
+  <li><%= link_to day.title_date, journal_day_path(@journal, day) %></li>
 <% end %>
 </ul>
 <%= link_to "View All Previous Entries", journal_days_path(@journal) %>

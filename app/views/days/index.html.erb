@@ -1,5 +1,5 @@
 <h1><%= @journal.title %>: </h1>
-<%= link_to "Add Today's Journal Entry", new_day_path %>
+<%= link_to "Add Today's Journal Entry", new_journal_day_path %>
 <ul>
   <% @journal.days.each do |day| %>
     <li><%= link_to day.title_date, day %></li>
