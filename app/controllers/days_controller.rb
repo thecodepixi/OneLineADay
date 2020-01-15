@@ -12,22 +12,24 @@ class DaysController < ApplicationController
   def new 
     @journal = Journal.find(params[:journal_id])
     @user = @journal.user 
-    @day = @journal.days.build
+    @day = Day.new 
   end 
 
   def create
+    @journal = Journal.find(params[:journal_id])
+    @user = @journal.user 
     @day = Day.new(day_params)
     if @day.save 
       redirect_to days_path(@day)
     else 
-      render 'days/new'
+      render :new
     end 
   end 
 
   private 
 
   def day_params 
-    params.require(:day).permit(:journal_id, :user_id, :mood_id, :content)
+    params.require(:day).permit(:journal_id, :user_id, :mood_id, :description)
   end 
 
 end

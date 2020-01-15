@@ -1,19 +1,11 @@
-<% if @day.errors.any? %>
-  <div class="alert alert-danger" role="alert">
-  <h4 class="alert-heading">Sorry, there was an error with your days details...</h4>
-  <% @day.errors.full_messages.each do |msg| %>
-    <li><%= msg %>
-  <% end %>
-  </div>
-<% end  %>
+<%= render 'errors' %>
 
-<%= form_with model: [ @journal, @day ] do |f| %>
-  <%= f.label "Describe Your Day:" %>
-  <%= f.text_field :content %>
-  <%= f.label "Choose Your Mood:" %>
-  <%= f.label :mood_id %>
-  <%= f.collection_select :mood_id, Mood.all, :id, :mood_type %>
+<%= form_for [@journal, @day] do |f| %>
+  <%= f.label :description, "Describe Your Day: (150 characters max)" %>
+  <%= f.text_field :description %><br>
+  <%= f.label :mood_id, "Choose Your Mood:" %>
+  <%= f.collection_select :mood_id, Mood.all, :id, :mood_type %><br>
   <%= f.hidden_field :journal_id, value: @journal.id %>
   <%= f.hidden_field :user_id, value: @user.id %>
-  <%= f.submit "Update Your Day" %>
+  <%= f.submit "Create Daily Update" %>
 <% end %>
