@@ -26,6 +26,7 @@ class JournalsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
+    allowed_access?(@user)
     @journal = Journal.new(journal_params)
     if @journal.save 
       redirect_to user_journals_path(@user)
@@ -37,11 +38,13 @@ class JournalsController < ApplicationController
   def edit
     @journal = Journal.find_by(id: params[:id])
     @user = @journal.user 
+    allowed_access?(@journal)
   end 
 
   def update
     @journal = Journal.find_by(id: params[:id])
     @user = User.find_by(params[:journal][:user_id])
+    allowed_access?(@journal)
     if @journal.update(journal_params)
       redirect_to user_journal_path(@user, @journal), notice: "Your journal was successfully updated."
     else 
@@ -52,6 +55,7 @@ class JournalsController < ApplicationController
   def destroy
     @user = User.find_by(params[:user_id])
     @journal = Journal.find(params[:id])
+    allowed_acess?(@journal)
     @journal.delete 
 
     redirect_to user_journals_path(@user), notice: "Journal successfully deleted."

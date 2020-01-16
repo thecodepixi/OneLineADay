@@ -1,4 +1,8 @@
 class MoodsController < ApplicationController
+  before_action do 
+    user = User.find_by(id: params[:user_id])
+    allowed_access?(user)
+  end 
 
   def index
     @user = User.find_by(id: params[:user_id])

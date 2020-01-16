@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    allowed_access?(@user)
   end 
 
   def login
@@ -27,6 +28,9 @@ class UsersController < ApplicationController
   end 
 
   def new
+    if logged_in? 
+      redirect_to root_path, notice: "You already have an account, silly!"
+    end 
     @user = User.new 
   end 
   
@@ -41,15 +45,13 @@ class UsersController < ApplicationController
   end 
 
   def edit
-    if current_user.id = params[:id]
-      @user = current_user
-    else 
-      redirect_to root_path, alert: "You must be logged in to visit that page. Please log in and try again."
-    end 
+    @user = User.find_by(id: params[:id])
+    allowed_access?(@user)
   end 
   
   def update
-    @user = current_user
+    @user = User.find_by(id: params[:id])
+    allowed_access?(@user)
     if @user.update(user_params)
       redirect_to @user, notice: "Your account has been updated."
     else 
@@ -59,6 +61,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    allowed_access?(@user)
     session.delete :user_id 
     @user.delete 
 
