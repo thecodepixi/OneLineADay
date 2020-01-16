@@ -18,9 +18,11 @@ class ApplicationController < ActionController::Base
 
     # checks if current_user owns the current record.
     def allowed_access?(thing, user = current_user)
+      #if thing is a user and not the current user 
       if thing.class == User && thing.id != user.id
         redirect_to root_path, alert: "Sorry, you can only access your own account!"
-      elsif thing.user != user
+      # if thing is not a user, and does not belong to current user 
+      elsif thing.class!= User && thing.user != user
         redirect_to root_path, alert: "Sorry, it looks like that doesn't belong to you!"
       end 
     end 

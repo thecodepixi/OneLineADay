@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       set_session(@user)
       redirect_to @user 
     else 
-      redirect_to root_path, alert: "Username or Password not recognized. Please try again."
+      redirect_to root_path, alert: "Username or Password not recognized. Please try again. (If you signed up using Facebook or GitHub, please Log In with that account.)"
     end 
   end 
 
