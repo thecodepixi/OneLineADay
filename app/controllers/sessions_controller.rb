@@ -3,18 +3,21 @@ class SessionsController < ApplicationController
 
   def create 
     # find User by their auth_hash details
-    @user = User.find_or_initialize_by(auth_hash: "#{auth_hash[:info]}") 
+    @user = User.find_or_initialize_by(uid: auth_hash[:extra][:raw_info][:id])
     # if User does not already exist in the DB, setup a new user account 
     if @user.id.nil? 
       if auth_hash[:provider] == "developer"
-        @user.uid = auth_hash[:uid]
+        @user.auth_hash = auth_hash[:info]
         @user.name = auth_hash[:info][:name]
         @user.username = auth_hash[:info][:name]
       elsif auth_hash[:provider] == "github"
-        @user.uid = auth_hash[:extra][:raw_info][:id]
+        @user.auth_hash = auth_hash[:info]
         @user.name = auth_hash[:info][:name]
         @user.username = auth_hash[:info][:nickname]
       elsif auth_hash[:provider] == "facebook"
+        @user.auth_hash = auth_hash[:info]
+        @user.name = auth_hash[:info][:name]
+        @user.username = auth_hash[:info][:name]
       end 
       # set password to a random integer string, because password is required. 
       # User can reset password after creating their account.

@@ -25,6 +25,7 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'omniauth-facebook'
 gem 'dotenv-rails'
 
 # Use Active Storage variant
