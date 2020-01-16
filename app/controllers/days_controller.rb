@@ -50,7 +50,15 @@ class DaysController < ApplicationController
     end 
   end 
 
-  private 
+  def destroy
+    day = Day.find(params[:id])
+    journal = day.journal 
+    day.delete 
+
+    redirect_to user_journal_path(journal.user, journal)
+  end 
+
+  private  
 
   def day_params 
     params.require(:day).permit(:journal_id, :user_id, :mood_id, :description)
