@@ -18,5 +18,5 @@
     - show page lists journal days tagged with that mood, sorted by journal 
 
   ## Necessary Helper Methods:  
-    - **Need method for redirect and alert when user is not logged in** 
+    - Need method for redirect and alert when user is not logged in
 

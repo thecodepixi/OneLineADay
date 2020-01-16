@@ -1,12 +1,14 @@
 <%= render 'flash' %>
-<h1><%= @journal.title %></h1>
-<h2><em><%= @journal.mantra %></em></h2>
-<%= link_to "Edit This Journal", edit_journal_path(@journal) %>
-<%= link_to "Delete This Journal", user_journal_path(@user, @journal), method: 'delete' %>
-<h3>Your Most Recent Entries:</h3>
-<ul>
+<div class='container'>
+<h2><%= @journal.title %></h2>
+<h4 class='text-muted'><em><%= @journal.mantra %></em></h4>
+<h5>Your Most Recent Entries:</h5>
+<ul class="list-group">
 <% @recent_days.each do |day| %>
-  <li><%= link_to day.title_date, journal_day_path(@journal, day) %></li>
+  <li class="list-group-item"><%= link_to day.title_date, journal_day_path(@journal, day) %></li>
 <% end %>
-</ul>
-<%= link_to "View All Previous Entries", journal_days_path(@journal) %>
+</ul><br>
+<p><%= link_to "View All Previous Entries", journal_days_path(@journal), class: 'btn btn-dark' %>
+<p><%= link_to "Edit This Journal", edit_journal_path(@journal), class: 'btn btn-info' %>
+<p><%= link_to "Delete This Journal", user_journal_path(@user, @journal), method: 'delete', class: 'btn btn-danger' %>
+</div>

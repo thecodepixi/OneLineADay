@@ -1,23 +1,30 @@
 <%= render 'flash' %>
-
-<%= link_to "Create An Account", new_user_path %>
-
-<h3>Log In:</h3>
+<div class='container-fluid'>
+<div class="row">
+<div class="col-sm"></div>
+<div class="col-sm">
+<br>
 <%= form_with(url: "/login", method: "post") do %>
   <div class="form-group">
-    <%= label_tag "Username:"%>
+    <%= label_tag :username, "Username:" %>
     <%= text_field_tag :username %>
   </div>
   <div class="form-group">
     <%= label_tag "Password:" %>
     <%= password_field_tag :password %>
   </div>
-    <%= submit_tag "Log In"%>
-<% end %>
+    <%= submit_tag "Log In", class: 'btn btn-dark'%>
+<% end %><br>
+  <p> <%= link_to "Create An Account", new_user_path, class: 'btn btn-info' %>
+  <p><%= link_to 'Sign in with the developer strategy', '/auth/developer', class: 'btn btn-info' %></p>
+  <p><%= link_to 'Sign in with GitHub', '/auth/github', method: :post, class: 'btn btn-info' %></p>
+  <p><%= link_to 'Sign in with Facebook', '/auth/facebook', method: :post, class: 'btn btn-info' %></p>
+</div>
+<div class="col-sm"></div>
+</div>
+</div>
 
-  <p>Try <%= link_to 'Signing in with the developer strategy', '/auth/developer' %>.</p>
-  <p>Try <%= link_to 'Signing in with the GitHub strategy', '/auth/github', method: :post %>.</p>
-  <p>Try <%= link_to 'Signing in with the Facebook strategy', '/auth/facebook', method: :post %>.</p>
+ 
 
 
 

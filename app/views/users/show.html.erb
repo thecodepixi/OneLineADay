@@ -1,5 +1,7 @@
 <%= render 'flash' %>
 
-<p><%= link_to "Your Journals", user_journals_path(@user) %>
-<p><%= link_to "Edit Your Account", edit_user_path(@user) %>
-<p><%= link_to "Delete Your Account", @user, method: 'delete' %>
+<ul class="list-group">
+  <li class="list-group-item"><%= link_to "View Your Journals", user_journals_path(@user) %></li>
+  <li class="list-group-item"><%= link_to "Edit Your Account", edit_user_path(@user) %></li>
+  <li class="list-group-item"><%= link_to "Delete Your Account", @user, method: 'delete' %></li>
+</ul>

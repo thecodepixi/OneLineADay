@@ -12,10 +12,11 @@
   <body>
   <header>
     <nav class="navbar navbar-light bg-light">
-      <%= link_to "One Line A Day Journal", root_path, class:"navbar-brand"%> <small>and a photo...and a mood...</small>
+      <%= link_to "One Line A Day Journal", root_path, class:"navbar-brand"%> 
       <% if logged_in? %>
         <%= form_with(url: '/logout', method: 'post') do %><%= submit_tag "Log Out", class: "btn btn-light"%><% end %>
       <% end %>
+      <small class="h5">and a photo...and a mood...</small>
     </nav>
   </header>
     <%= yield %>

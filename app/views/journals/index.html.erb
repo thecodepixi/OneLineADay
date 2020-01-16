@@ -1,7 +1,11 @@
 <%= render 'flash' %>
-<%= link_to "New Journal", new_user_journal_path(@user) %>
-<ul>
+<br>
+<div class='container'>
+<h3><%= @user.username %>'s Journals:</h3>
+<ul class='list-group'>
 <% @journals.each do |journal| %>
-  <li><%= link_to journal.title, user_journal_path(@user, journal) %></li>
+  <li class='list-group-item'><%= link_to journal.title, user_journal_path(@user, journal) %></li>
 <% end %>
-</ul>
+</ul><br>
+<p><%= link_to "New Journal", new_user_journal_path(@user), class: 'btn btn-info' %>
+</div>
