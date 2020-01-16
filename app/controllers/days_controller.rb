@@ -7,7 +7,7 @@ class DaysController < ApplicationController
 
   def show 
     @day = Day.find_by(id: params[:id])
-    @allowed_access?(@day)
+    allowed_access?(@day)
     @user = @day.user 
   end 
 
@@ -15,6 +15,7 @@ class DaysController < ApplicationController
     @journal = Journal.find(params[:journal_id])
     allowed_access?(@journal)
     @user = @journal.user 
+    already_updated?
     @day = Day.new 
     @mood = Mood.new 
   end 
@@ -69,6 +70,12 @@ class DaysController < ApplicationController
 
   def day_params 
     params.require(:day).permit(:journal_id, :user_id, :mood_id, :description)
+  end 
+
+  def already_updated?
+    if @user.days.last.created_at.today? == Time.now.today?
+      redirect_to user_journal_path(@user, @journal), alert: "You've already made your entry for today. Try editing it instead!"
+    end 
   end 
 
 end
