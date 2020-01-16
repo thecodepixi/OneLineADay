@@ -1,0 +1,9 @@
+<h1>Your Moods from <%= @journal.title %>:</h1>
+<% @moods.each do |mood| %>
+  <h3><%= link_to mood.mood_type.titleize, user_mood_path(@user, mood) %></h3>
+  <ul>
+  <% mood.days.where("journal_id = ?", @journal.id).each do |day| %>
+  <li><%= link_to day.title_date, journal_day_path(@journal, day) %></li>
+  <% end %>
+  </ul>
+<% end %>
