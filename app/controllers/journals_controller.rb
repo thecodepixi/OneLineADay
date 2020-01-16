@@ -4,19 +4,23 @@ class JournalsController < ApplicationController
     if !logged_in?
       redirect_to root_path
     end 
+    
+    @user = User.find_by(id: params[:user_id])
+    @journals = @user.journals
 
-    @user = current_user 
-    @journals = current_user.journals
+    allowed_access?(@user)
   end 
 
   def show 
     @user = User.find_by(id: params[:user_id])
     @journal = Journal.find_by(id: params[:id])
+    allowed_access?(@journal)
     @recent_days = @journal.days.order('created_at desc').limit(3)
   end 
 
   def new
     @user = User.find(params[:user_id])
+    allowed_access?(@user)
     @journal = Journal.new
   end 
 

@@ -13,19 +13,16 @@ class ApplicationController < ActionController::Base
 
   #persist current logged in User object
   def current_user
-    @user ||= User.find_by(id: session[:user_id])
+    @current_user ||= User.find_by(id: session[:user_id])
   end 
 
-    #TODO checks if current_user owns the current record. Maybe this belongs in Users Controller?
-    def owns_record?
-      # this is maybe insufficient for how I want to use this method but good enough for now
-      user_id = nil
-      if params[:user_id]
-        user_id = params[:user_id]
-      else 
-        user_id = params[:id]
+    # checks if current_user owns the current record.
+    def allowed_access?(thing, user = current_user)
+      if thing.class == User && thing.id != user.id
+        redirect_to root_path, alert: "Sorry, you can only access your own account!"
+      elsif thing.user != user
+        redirect_to root_path, alert: "Sorry, it looks like that doesn't belong to you!"
       end 
-      current_user.id == user_id
     end 
 
 end
