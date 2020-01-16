@@ -35,6 +35,29 @@ class DaysController < ApplicationController
     end 
   end 
 
+  def edit 
+    @day = Day.find_by(id: params[:id])
+    @mood = Mood.new 
+  end 
+
+  def update 
+    @day = Day.find(params[:id])
+    @day.update(day_params)
+    if !params[:day][:mood][:mood_type].nil? && params[:day][:mood_id].blank?
+      @mood = Mood.new(mood_type: params[:day][:mood][:mood_type])
+      if @mood.save 
+        @day.mood = @mood
+      else
+        render :edit
+      end 
+    end 
+    if @day.save
+      redirect_to journal_day_path(@day.journal,@day)
+    else 
+      render :edit
+    end 
+  end 
+
   private 
 
   def day_params 

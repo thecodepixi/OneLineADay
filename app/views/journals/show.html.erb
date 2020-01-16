@@ -2,6 +2,7 @@
 <div class='container'>
 <h2><%= @journal.title %></h2>
 <h4 class='text-muted'><em><%= @journal.mantra %></em></h4>
+<p><%=  link_to "Add Today's Journal Entry", new_journal_day_path(@journal), class: 'btn btn-info' %>
 <h5>Your Most Recent Entries:</h5>
 <ul class="list-group">
 <% @recent_days.each do |day| %>
