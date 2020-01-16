@@ -21,12 +21,8 @@ class DaysController < ApplicationController
     @user = @journal.user 
     @day = Day.new(day_params)
     if !params[:day][:mood][:mood_type].nil? && params[:day][:mood_id].blank?
-      @mood = Mood.new(mood_type: params[:day][:mood][:mood_type])
-      if @mood.save 
-        @day.mood = @mood
-      else
-        render :new
-      end 
+      @mood = Mood.find_or_initialize_by(mood_type: params[:day][:mood][:mood_type])
+      @day.mood = @mood
     end 
     if @day.save 
       redirect_to journal_day_path(@journal,@day)
@@ -44,12 +40,8 @@ class DaysController < ApplicationController
     @day = Day.find(params[:id])
     @day.update(day_params)
     if !params[:day][:mood][:mood_type].nil? && params[:day][:mood_id].blank?
-      @mood = Mood.new(mood_type: params[:day][:mood][:mood_type])
-      if @mood.save 
-        @day.mood = @mood
-      else
-        render :edit
-      end 
+      @mood = Mood.find_or_initialize_by(mood_type: params[:day][:mood][:mood_type])
+      @day.mood = @mood
     end 
     if @day.save
       redirect_to journal_day_path(@day.journal,@day)
