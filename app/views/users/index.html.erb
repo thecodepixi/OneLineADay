@@ -15,9 +15,9 @@
     <%= submit_tag "Log In"%>
 <% end %>
 
-  <p>Try <%= link_to 'Signing in with the developer strategy', '/auth/developer'%>.</p>
-  <p>Try <%= link_to 'Signing in with the GitHub strategy', '/auth/github'%>.</p>
-  <p>Try <%= link_to 'Signing in with the Facebook strategy', '/auth/facebook'%>.</p>
+  <p>Try <%= link_to 'Signing in with the developer strategy', '/auth/developer' %>.</p>
+  <p>Try <%= link_to 'Signing in with the GitHub strategy', '/auth/github', method: :post %>.</p>
+  <p>Try <%= link_to 'Signing in with the Facebook strategy', '/auth/facebook', method: :post %>.</p>
 
 
 
