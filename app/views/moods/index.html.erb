@@ -1,0 +1,4 @@
+<h1>All of Your Moods: </h1>
+<% @moods.each do |mood| %>
+  <p>You felt <%= link_to mood.mood_type.titleize, user_mood_path(@user, mood) %> for <%= @user.moods.where('mood_id = ?', mood.id).count %> <%= 'day'.pluralize(@user.moods.where('mood_id = ?', mood.id).count)%>. 
+<% end %>
