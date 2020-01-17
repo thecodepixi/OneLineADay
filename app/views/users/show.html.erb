@@ -4,5 +4,5 @@
   <li class="list-group-item"><%= link_to "View Your Journals", user_journals_path(@user) %></li>
   <li class="list-group-item"><%= link_to "View All of Your Moods", user_moods_path(@user) %></li>
   <li class="list-group-item"><%= link_to "Edit Your Account", edit_user_path(@user) %></li>
-  <li class="list-group-item"><%= link_to "Delete Your Account", @user, method: 'delete' %></li>
+  <li class="list-group-item"><%= link_to "Delete Your Account", @user, method: 'delete', data: {confirm: "Are you sure? All of your journals and daily updates will be deleted, and cannot be recovered..."} %></li>
 </ul>

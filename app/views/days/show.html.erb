@@ -3,4 +3,4 @@
 <h3><%= @day.mood.mood_type %></h3>
 <p><%= @day.description %>
 
-<small><%= link_to 'Delete This Daily Update', @day, method: 'delete' %></small>
+<small><%= link_to 'Delete This Daily Update', @day, method: 'delete', data: {confirm: "Are you sure?"} %></small>

@@ -1,6 +1,6 @@
 class Journal < ApplicationRecord
   belongs_to :user
-  has_many :days 
+  has_many :days, dependent: :destroy 
   has_many :moods, through: :days 
 
   validates :user_id, presence: true 

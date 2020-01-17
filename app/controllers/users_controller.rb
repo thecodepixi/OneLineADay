@@ -63,6 +63,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     allowed_access?(@user)
     session.delete :user_id 
+    @user.days.delete 
+    @user.journals.delete 
     @user.delete 
 
     redirect_to root_path, notice: "Your account has been deleted."
