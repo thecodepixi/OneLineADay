@@ -1,4 +1,10 @@
-<h1>All of Your Moods: </h1>
+<div class='container text-center'>
+<h1 class='display-4'>Your Moods: </h1>
+<ul class='list-group list-group-horizontal-lg flex-wrap'>
 <% @moods.each do |mood| %>
-  <p>You felt <%= link_to mood.mood_type.titleize, user_mood_path(@user, mood) %> for <%= @user.moods.where('mood_id = ?', mood.id).count %> <%= 'day'.pluralize(@user.moods.where('mood_id = ?', mood.id).count)%>. 
+  <li class='list-group-item'><a type="button" class="btn btn-outline-info btn-lg" href="/users/<%= @user.id %>/moods/<%= mood.id %>">
+    <%= mood.mood_type %> <span class="badge badge-light"><%= @user.days.where('mood_id = ?', mood.id).count %></span>
+  </a>
 <% end %>
+</ul>
+</div>

@@ -6,31 +6,31 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-#CREATE MY DEMO USER 
-User.create(name: 'Emily', username:'EmilyAnne', password: 'AdminUser')
+# #CREATE MY DEMO USER 
+# User.create(name: 'Emily', username:'EmilyAnne', password: 'AdminUser')
 
-#CREATE OTHER FAKE USERS
-until User.all.count == 5
-   User.create(name: Faker::Name.name, username: Faker::Games::Pokemon.name, password: "password") 
-end 
+# #CREATE OTHER FAKE USERS
+# until User.all.count == 5
+#    User.create(name: Faker::Name.name, username: Faker::Games::Pokemon.name, password: "password") 
+# end 
 
-#CREATE FAKE JOURNALS:
-User.all.each do |user|
-  4.times do 
-    Journal.create(title: Faker::Book.title, mantra: Faker::Movies::HitchhikersGuideToTheGalaxy.marvin_quote, user_id: user.id)
-  end 
-end 
+# #CREATE FAKE JOURNALS:
+# User.all.each do |user|
+#   until user.journals.count == 5 do 
+#     Journal.create(title: Faker::Book.title, mantra: Faker::Movies::HitchhikersGuideToTheGalaxy.marvin_quote, user_id: user.id)
+#   end 
+# end 
 
-#CREATE MOODS
-moods = ["happy", "sad", "energetic", "lonely", "depressed", "optimistic", "angry", "nervous", "stressed"]
+# #CREATE MOODS
+# moods = ["energetic", "lonely", "depressed", "optimistic", "angry", "nervous", "stressed", "joyful"]
 
-moods.each do |mood|
-  Mood.create(mood_type: mood) 
-end 
+# moods.each do |mood|
+#   Mood.create(mood_type: mood) 
+# end 
 
 #CREATE FAKE JOURNAL ENTRIES/DAYS 
 Journal.all.each do |journal| 
-  5.times do 
+  until journal.days.count == 7 do 
     day = journal.days.build 
     day.description = Faker::Hipster.sentence(word_count: 5)
     day.user = journal.user

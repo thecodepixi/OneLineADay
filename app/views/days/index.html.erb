@@ -1,7 +1,18 @@
-<h1><%= @journal.title %>: </h1>
-<%= link_to "Add Today's Journal Entry", new_journal_day_path(@journal) %>
-<ul>
-  <% @journal.days.each do |day| %>
-    <li><%= link_to day.title_date, journal_day_path(@journal,day) %></li>
-  <% end %>
-</ul>
+<div class="container">
+  <div class='row row-cols-3 justify-content-center'>
+    <div class='col col-auto'></div>
+      <div class='col col-10 text-center'>
+        <h2 class='display-4'><%= @journal.title %></h2>
+        <blockquote class='blockquote'><em><%= @journal.mantra %></em></blockquote>
+        <p><%=  link_to "Add Today's Journal Entry", new_journal_day_path(@journal), class: 'btn btn-info' %>
+        <ul class="list-group">
+        <% @journal.days.order('created_at desc').each do |day| %>
+          <li class="list-group-item"><%= link_to day.title_date, journal_day_path(@journal, day) %></li>
+        <% end %>
+        </ul><br>
+        <p><%= link_to "Edit This Journal", edit_journal_path(@journal), class: 'btn btn-info' %>
+        <p><%= link_to "Delete This Journal", user_journal_path(@journal.user, @journal), method: 'delete', class: 'btn btn-danger', data: {confirm: "Are you sure? If you delete this journal, you will delete all associated daily updates..."}%>
+      </div>
+    <div class='col col-auto'></div>
+  </div>
+</div>

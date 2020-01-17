@@ -4,8 +4,14 @@
   <% @day.errors.full_messages.each do |msg| %>
     <li><%= msg %>
   <% end %>
-  <% @mood.errors.full_messages.each do |msg| %>
-    <li><%= msg %>
+  <% if @mood %>
+    <% @mood.errors.full_messages.each do |msg| %>
+      <li><%= msg %>
+    <% end %>
+  <% else %>
+    <% @day.mood.errors.full_messages.each do |msg| %>
+      <li><%= msg %>
+    <% end %>
   <% end %>
   </div>
 <% end  %>

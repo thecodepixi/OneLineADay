@@ -9,6 +9,7 @@ class DaysController < ApplicationController
     @day = Day.find_by(id: params[:id])
     allowed_access?(@day)
     @user = @day.user 
+    @mood = @day.mood 
   end 
 
   def new 
@@ -29,8 +30,6 @@ class DaysController < ApplicationController
       @mood = Mood.find_or_initialize_by(mood_type: params[:day][:mood][:mood_type])
       if @mood.save 
         @day.mood = @mood
-      else 
-        render :new
       end 
     end 
     if @day.save 
@@ -54,8 +53,6 @@ class DaysController < ApplicationController
       @mood = Mood.find_or_initialize_by(mood_type: params[:day][:mood][:mood_type])
       if @mood.save 
         @day.mood = @mood
-      else 
-        render :edit
       end 
     end 
     if @day.save
@@ -81,7 +78,7 @@ class DaysController < ApplicationController
   end 
 
   def already_updated?
-    if @user.days.any? && @user.days.last.created_at.today? == Time.now.today?
+    if @journal.days.any? && @journal.days.last.created_at.today? == Time.now.today?
       redirect_to user_journal_path(@user, @journal), alert: "You've already made your entry for today. Try editing it instead!"
     end 
   end 

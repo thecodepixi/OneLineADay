@@ -15,7 +15,7 @@ class JournalsController < ApplicationController
     @user = User.find_by(id: params[:user_id])
     @journal = Journal.find_by(id: params[:id])
     allowed_access?(@journal)
-    @recent_days = @journal.days.order('created_at desc').limit(3)
+    @recent_days = @journal.days.order('created_at desc').limit(5)
   end 
 
   def new
@@ -29,7 +29,7 @@ class JournalsController < ApplicationController
     allowed_access?(@user)
     @journal = Journal.new(journal_params)
     if @journal.save 
-      redirect_to user_journals_path(@user)
+      redirect_to user_journal_path(@user, @journal)
     else 
       render :new 
     end 

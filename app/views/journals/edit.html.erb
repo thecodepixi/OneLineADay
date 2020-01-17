@@ -1,9 +1,18 @@
 <%= render 'errors' %>
+<div class="container">
+<h1 class="display-4">Create a New Journal:</h1>
 <%= form_for @journal do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :mantra %>
-  <%= f.text_field :mantra %>
+<div class = 'form_group'>
+  <%= f.label :title, 'Journal Title or Theme', class: 'h4' %>
+  <%= f.text_field :title, class: 'form-control' %>
+</div>
+<br>
+<div class = 'form_group'>
+  <%= f.label :mantra, 'Journal Mantra', class: 'h4' %>
+  <%= f.text_field :mantra, class: 'form-control' %>
+</div>
   <%= f.hidden_field :user_id, value: @journal.user.id %>
-  <%= f.submit %>
+  <br>
+  <%= f.submit 'Create Journal', class: 'btn btn-info btn-lg' %>
 <% end %>
+</div>

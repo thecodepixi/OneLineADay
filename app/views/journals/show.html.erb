@@ -1,7 +1,7 @@
 <%= render 'flash' %>
-<div class='container'>
-<h2><%= @journal.title %></h2>
-<h4 class='text-muted'><em><%= @journal.mantra %></em></h4>
+<div class='container text-center'>
+<h2 class='display-4'><%= @journal.title %></h2>
+<blockquote class='blockquote'><em><%= @journal.mantra %></em></blockquote>
 <p><%=  link_to "Add Today's Journal Entry", new_journal_day_path(@journal), class: 'btn btn-info' %>
 <h5>Your Most Recent Entries:</h5>
 <ul class="list-group">

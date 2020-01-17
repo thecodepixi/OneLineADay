@@ -1,23 +1,25 @@
 <%= render 'errors' %>
 <div class="container">
-<h3>How Was Your Day?</h3>
+<hr>
+<h3 class='display-4 text-center'>How Was Your Day?</h3>
+<hr>
 <%= form_for [@journal, @day] do |f| %>
 <div class='form-group'>
-  <%= f.label :description, "Describe Your Day: (150 characters max)" %><br>
-  <%= f.text_area :description %>
+  <%= f.label :description, "Describe Your Day: (250 characters max)", class: 'h4' %><br>
+  <%= f.text_area :description, class: 'form-control'%>
 </div>
 <div class='form-group'>
-  <%= f.label :mood_id, "Choose Your Mood:" %>
-  <%= f.collection_select :mood_id, Mood.all, :id, :mood_type, include_blank: '' %>
+  <%= f.label :mood_id, "How Was Your Mood?", class: 'h4'%>
+  <%= f.collection_select(:mood_id, Mood.all, :id, :mood_type, {include_blank: true}, {class:'form-control'} )%>
 </div>
 <div class='form-group'>
   <%= f.fields_for :mood do |m| %><br>
-    <%= m.label :mood_type, "Create New Mood:"%>
-    <%= m.text_field :mood_type %>
+    <%= m.label :mood_type, "Create a New Mood:", class: 'h4'%>
+    <%= m.text_field :mood_type, class: 'form-control'%>
   <% end %><br>
 </div>
   <%= f.hidden_field :journal_id, value: @journal.id %>
   <%= f.hidden_field :user_id, value: @user.id %>
-  <%= f.submit "Create Daily Update", class: 'btn btn-info' %>
+  <%= f.submit "Create Daily Update", class: 'btn btn-info btn-lg' %>
 <% end %>
 </div>
