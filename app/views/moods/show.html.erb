@@ -2,7 +2,7 @@
   <h1 class='display-4'>All of the days you felt <%= @mood.mood_type.titleize %>:</h1>
   <ul class= 'list-group'>
     <% @days.each do |day| %>
-      <%= link_to day.title_date, journal_day_path(day.journal, day), class: 'list-group-item' %>
+      <%= link_to day.title_date, journal_day_path(day.journal, day), class: 'list-group-item text-info' %>
     <% end %>
   </ul>
   <br>

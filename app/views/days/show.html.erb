@@ -5,9 +5,11 @@
       <div class='col col-10 text-center'>
       <br>
       <h1 class='display-4'><%= @day.title_date %></h2>
-      <blockquote class='blockquote'> YOU WERE FEELING <%= @day.mood.mood_type.upcase %></blockquote>
+      <hr>
+      <blockquote class='blockquote text-secondary'> YOU WERE FEELING <%= @day.mood.mood_type.upcase %></blockquote>
       <p class='h3'><%= @day.description %></p>
-      <p><small class='text-muted'>From your journal <%= link_to @day.journal.title, user_journal_path(@user, @day.journal)%></small></p>
+      <hr>
+      <p><small class='text-muted'>From your journal <%= link_to @day.journal.title, user_journal_path(@user, @day.journal), class: 'text-info'%></small></p>
       <p><%= link_to "Edit This Day", edit_day_path(@day), class: 'btn btn-info' %>
       <p><%= link_to 'Delete This Day', @day, method: 'delete', data: {confirm: "Are you sure?"}, class: 'btn btn-outline-danger btn-sm' %>
       <p><%= link_to "Back to Journal", user_journal_path(@day.user, @day.journal), class: 'btn btn-dark'%>
