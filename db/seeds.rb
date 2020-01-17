@@ -32,7 +32,7 @@ end
 Journal.all.each do |journal| 
   5.times do 
     day = journal.days.build 
-    day.content = Faker::Hipster.sentence(word_count: 5)
+    day.description = Faker::Hipster.sentence(word_count: 5)
     day.user = journal.user
     day.mood = Mood.all.sample 
     day.created_at = Faker::Date.between(from: 1.years.ago, to: Date.today)

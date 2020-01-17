@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :username, uniqueness: true, presence: true 
 
   has_many :journals, dependent: :destroy
-  has_many :days, through: :journals, dependent: :destroy 
+  has_many :days, through: :journals
   has_many :moods, through: :days  
 
 end
