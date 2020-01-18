@@ -1,5 +1,27 @@
 # One Line A Day Journal:
 ## Rails Portfolio Project for Flatiron School 
- - ReadMe is now a To Do Item! 🎉
 
- # FIX NOT LOGGED IN REDIRECT/ERROR (THIS IS MISSING, DUMMY)
+One Line A Day is a simplified journaling and mood tracker app. Similar to popular IRL 'One Line A Day' journals, you are limited to a specific number of characters (250) per journal entry. However, you can have multiple journals, with which you can track any number of parts of your life. Maybe your a parent and you need a journal to track each of your children's growth and moods, or a student who wants a journal to track your feelings/learning for each subject you study. The possibilities are endless. 
+
+You can create a native account, or log in using either Facebook or GitHub. 
+
+## To Run This App: 
+*This app will be deployed on Heroku shortly...* 
+
+## Routes/URI of Interest: 
+Once you have your account up and running, here are a few things you might want to do: 
+- Track your moods by clicking the 'View All of Your Moods' link on the homepage (**URI: /users/:id/moods**)
+- To see all moods for a specific journal, you can navigate to **users/:id/journals/:id/moods** directly, or visit **/journals/:id/days** and click the link to view the mood summary for that journal. 
+- If you need to edit your account, you can click the 'Edit Your Account' link on your account homepage. (Sorry, Facebook/Github users cannot utilize this feature *yet*)
+
+## License
+
+Copyright 2019
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
