@@ -7,7 +7,7 @@ class JournalsController < ApplicationController
     end 
     
     @user = User.find_by(id: params[:user_id])
-    @journals = @user.journals
+    @journals = @user.journals.order('title asc')
 
     allowed_access?(@user)
   end 
