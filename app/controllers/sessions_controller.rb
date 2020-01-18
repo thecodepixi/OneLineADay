@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: :create
 
   def create 
     # find User by their auth_hash details
