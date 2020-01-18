@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  
+  before_action :not_logged_in?, except: [:index, :login]
 
   def index 
     if logged_in? 
@@ -52,11 +54,21 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by(id: params[:id])
     allowed_access?(@user)
-    if @user.update(user_params)
-      redirect_to @user, notice: "Your account has been updated."
+    # authenticate the user
+    if @user.authenticate(params[:user][:password])
+      #update their account
+      if @user.update(user_params)
+        # and redirect back to their homepage 
+        return redirect_to @user, notice: 'Your account has been updated'
+      else 
+        #errors, render edit 
+        return render :edit 
+      end 
     else 
-      render :edit
+      #user does not authenticate, redirect back to edit page and alert
+      redirect_to edit_user_path(@user), alert: 'Incorrect Password. Please enter your password to update your account.'
     end 
+
   end 
 
   def destroy

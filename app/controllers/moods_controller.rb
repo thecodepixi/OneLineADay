@@ -1,4 +1,6 @@
 class MoodsController < ApplicationController
+  before_action :not_logged_in? 
+
   before_action do 
     user = User.find_by(id: params[:user_id])
     allowed_access?(user)

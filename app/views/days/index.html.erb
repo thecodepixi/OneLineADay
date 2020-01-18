@@ -5,6 +5,7 @@
         <h2 class='display-4'><%= @journal.title %></h2>
         <blockquote class='blockquote'><em><%= @journal.mantra %></em></blockquote>
         <p><%=  link_to "Add Today's Journal Entry", new_journal_day_path(@journal), class: 'btn btn-info' %>
+        <p><%=  link_to "View This Journals Mood Summary", user_journal_moods_path(@journal.user, @journal), class: 'text-muted text-info' %>
         <ul class="list-group">
         <% @journal.days.order('created_at desc').each do |day| %>
           <li class="list-group-item"><%= link_to day.title_date, journal_day_path(@journal, day), class:'text-info' %></li>

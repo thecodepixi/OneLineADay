@@ -1,9 +1,13 @@
-<h1>Your Moods from <%= @journal.title %>:</h1>
+<div class='container'>
+<br>
+<h1 class='display-4 text-dark'>Mood Trends from <%= link_to @journal.title, journal_days_path(@journal), class: 'text-dark' %>:</h1><br>
 <% @moods.each do |mood| %>
-  <h3><%= link_to mood.mood_type.titleize, user_mood_path(@user, mood) %></h3>
-  <ul>
+  <h3><%= link_to mood.mood_type.titleize, user_mood_path(@user, mood), class: 'text-info' %></h3>
+  <ul class='list-group'>
   <% mood.days.where("journal_id = ?", @journal.id).each do |day| %>
-  <li><%= link_to day.title_date, journal_day_path(@journal, day) %></li>
+  <li class='list-group-item'><%= link_to day.title_date, journal_day_path(@journal, day), class: 'text-secondary' %></li>
   <% end %>
-  </ul>
+  </ul><br>
 <% end %>
+
+</div>

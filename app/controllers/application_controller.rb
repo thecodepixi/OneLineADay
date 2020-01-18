@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :logged_in? 
+  helper_method :logged_in?, :not_logged_in? 
 
   #create session on login 
   def set_session(user)
@@ -14,6 +14,12 @@ class ApplicationController < ActionController::Base
   #persist current logged in User object
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
+  end 
+
+  def not_logged_in?
+    if !logged_in? 
+      redirect_to root_path, alert: 'Please log in or create an account first. Thank you! '
+    end 
   end 
 
     # checks if current_user owns the current record.

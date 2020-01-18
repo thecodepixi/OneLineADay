@@ -1,4 +1,5 @@
 class JournalsController < ApplicationController
+  before_action :not_logged_in? 
 
   def index 
     if !logged_in?
