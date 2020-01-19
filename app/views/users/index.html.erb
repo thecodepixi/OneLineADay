@@ -13,12 +13,11 @@
     <%= label_tag "Password:" %>
     <%= password_field_tag :password %>
   </div>
-    <%= submit_tag "Log In", class: 'btn btn-dark'%>
+    <%= submit_tag "Log In", class: 'btn btn-info'%>
 <% end %><br>
   <p> <%= link_to "Create An Account", new_user_path, class: 'btn btn-info' %>
-  <p><%= link_to 'Sign in with the developer strategy', '/auth/developer', class: 'btn btn-info' %></p>
-  <p><%= link_to 'Sign in with GitHub', '/auth/github', method: :post, class: 'btn btn-info' %></p>
-  <p><%= link_to 'Sign in with Facebook', '/auth/facebook', method: :post, class: 'btn btn-info' %></p>
+  <p><%= link_to 'Sign in with GitHub', '/auth/github', method: :post, class: 'btn btn-dark' %></p>
+  <p><%= link_to 'Sign in with Facebook', '/auth/facebook', method: :post, class: 'btn btn-primary' %></p>
 </div>
 <div class="col-sm"></div>
 </div>

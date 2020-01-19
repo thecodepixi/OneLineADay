@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_action :not_logged_in?, except: [:index, :login]
+  before_action :not_logged_in?, except: [:index, :login, :new, :create]
 
   def index 
     if logged_in? 

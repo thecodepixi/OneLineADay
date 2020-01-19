@@ -20,7 +20,7 @@ class MoodsController < ApplicationController
   def journal_index 
     @journal = Journal.find_by(id: params[:journal_id])
     @user = User.find_by(id: params[:user_id])
-    @moods = @journal.moods 
+    @moods = @journal.moods.distinct 
   end 
 
 end
