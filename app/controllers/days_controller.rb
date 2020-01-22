@@ -49,6 +49,7 @@ class DaysController < ApplicationController
     @day = Day.find(params[:id])
     allowed_access?(@day)
     @day.update(day_params)
+    # create a new mood, when mood text_field is filled in and mood collection_select is blank. ! If both are filled in, the dropdown is the default ! 
     if !params[:day][:mood][:mood_type].nil? && params[:day][:mood_id].blank?
       @mood = Mood.find_or_initialize_by(mood_type: params[:day][:mood][:mood_type])
       if @mood.save 
@@ -56,7 +57,7 @@ class DaysController < ApplicationController
       end 
     end 
     if @day.save
-      redirect_to journal_day_path(@day.journal,@day)
+      return redirect_to journal_day_path(@day.journal,@day)
     else 
       render :edit
     end 
@@ -64,9 +65,8 @@ class DaysController < ApplicationController
 
   def destroy
     day = Day.find(params[:id])
-    allowed_access?(day)
     journal = day.journal 
-    day.delete 
+    day.destroy 
 
     redirect_to user_journal_path(journal.user, journal)
   end 
@@ -77,6 +77,7 @@ class DaysController < ApplicationController
     params.require(:day).permit(:journal_id, :user_id, :mood_id, :description)
   end 
 
+  # check whether the user has already made their daily update for the journal
   def already_updated?
     if @journal.days.any? && @journal.days.last.created_at.today?
       redirect_to user_journal_path(@user, @journal), alert: "You've already made your entry for today. Try editing it instead!"

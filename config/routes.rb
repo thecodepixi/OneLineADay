@@ -54,3 +54,6 @@ end
 # get days/:id/edit => days#edit 
 # put/patch days/:id => days#update 
 # delete days/:id => days#destroy 
+# users/:id/journals/:id/moods 
+# users/:id/moods 
+# users/:id/moods/:id 

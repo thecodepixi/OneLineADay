@@ -16,21 +16,22 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id])
   end 
 
+  #restrict access and cause redirect if there is no session[:user_id]
   def not_logged_in?
     if !logged_in? 
       redirect_to root_path, alert: 'Please log in or create an account first. Thank you! '
     end 
   end 
 
-    # checks if current_user owns the current record.
-    def allowed_access?(thing, user = current_user)
-      #if thing is a user and not the current user 
-      if thing.class == User && thing.id != user.id
-        redirect_to root_path, alert: "Sorry, you can only access your own account!"
-      # if thing is not a user, and does not belong to current user 
-      elsif thing.class!= User && thing.user != user
-        redirect_to root_path, alert: "Sorry, it looks like that doesn't belong to you!"
-      end 
+# checks if current_user owns the current record.
+  def allowed_access?(thing)
+    #if 'thing' is a User and not the current_user 
+    if thing.class == User && thing.id != current_user.id
+      return redirect_to root_path, alert: "Sorry, you can only access your own account!"
+    # if thing is not a user, and does not belong to current user 
+    elsif thing.class!= User && thing.user != current_user
+      redirect_to root_path, alert: "Sorry, it looks like that doesn't belong to you!"
     end 
+  end 
 
 end

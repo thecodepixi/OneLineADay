@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+
   before_action :not_logged_in?, except: [:index, :login, :new, :create]
 
   def index 
@@ -17,9 +17,9 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       set_session(@user)
-      redirect_to @user 
+      return redirect_to @user 
     else 
-      redirect_to root_path, alert: "Username or Password not recognized. Please try again. (If you signed up using Facebook or GitHub, please Log In with that account.)"
+      redirect_to root_path, alert: "Username or Password not recognized. Please try again. (If you signed up using Facebook or GitHub, please Log In using that option below.)"
     end 
   end 
 
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       set_session(@user)
-      redirect_to @user
+      return redirect_to @user
     else 
       render :new
     end  
@@ -53,7 +53,6 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find_by(id: params[:id])
-    allowed_access?(@user)
     # authenticate the user
     if @user.authenticate(params[:user][:password])
       #update their account
@@ -61,25 +60,24 @@ class UsersController < ApplicationController
         # and redirect back to their homepage 
         return redirect_to @user, notice: 'Your account has been updated'
       else 
-        #errors, render edit 
+        #on errors, render edit page
         return render :edit 
       end 
     else 
-      #user does not authenticate, redirect back to edit page and alert
+      #when user does not authenticate, redirect back to edit page and alert
       redirect_to edit_user_path(@user), alert: 'Incorrect Password. Please enter your password to update your account.'
     end 
-
   end 
 
   def destroy
     @user = User.find(params[:id])
-    allowed_access?(@user)
     session.delete :user_id 
-    @user.days.delete 
-    @user.journals.delete 
-    @user.delete 
+    # user moods need to be destroyed independently 
+    @user.moods.destroy_all 
+    # on destroy, user journals and days are destroyed automatically 
+    @user.destory 
 
-    redirect_to root_path, notice: "Your account has been deleted."
+    redirect_to root_path, notice: "Your account has been deleted. We miss you already!"
   end 
 
   private 

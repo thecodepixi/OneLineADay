@@ -1,25 +1,25 @@
 class SessionsController < ApplicationController
 
+  # method for OmniAuth account creation and login
   def create 
     # find User by their auth_hash details
     @user = User.find_or_initialize_by(uid: auth_hash[:extra][:raw_info][:id])
-    # if User does not already exist in the DB, setup a new user account 
+    # if User does not already exist in the DB, create a new user account 
     if @user.id.nil? 
-      if auth_hash[:provider] == "developer"
-        @user.auth_hash = auth_hash[:info]
-        @user.name = auth_hash[:info][:name]
-        @user.username = auth_hash[:info][:name]
-      elsif auth_hash[:provider] == "github"
+      # github auth
+      if auth_hash[:provider] == "github"
         @user.auth_hash = auth_hash[:info]
         @user.name = auth_hash[:info][:name]
         @user.username = auth_hash[:info][:nickname]
+      # facebook auth 
       elsif auth_hash[:provider] == "facebook"
         @user.auth_hash = auth_hash[:info]
         @user.name = auth_hash[:info][:name]
+        # facebook accounts don't have 'nicknames', so reuse :name as username
         @user.username = auth_hash[:info][:name]
       end 
-      # set password to a random integer string, because password is required. 
-      # User can reset password after creating their account.
+      # set password to a random string integer (9-10 digits long), b/c password is required. 
+      # TO DO: Allow users to reset randomly generated password, or choose a password during account creation... 
       @user.password = "#{rand 10**10}"
       @user.save 
     end 
@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
 
   private 
 
-  # this method creates a hash from the omniauth.auth hash containing their account details 
+  # this method creates a hash from the omniauth.auth hash containing the account details 
   def auth_hash
     request.env['omniauth.auth']
   end 

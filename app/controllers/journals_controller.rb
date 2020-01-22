@@ -1,13 +1,10 @@
 class JournalsController < ApplicationController
+
   before_action :not_logged_in? 
 
   def index 
-    if !logged_in?
-      redirect_to root_path
-    end 
-    
     @user = User.find_by(id: params[:user_id])
-    @journals = @user.journals.order('title asc')
+    @journals = @user.journals.order('created_at desc')
 
     allowed_access?(@user)
   end 
@@ -30,7 +27,7 @@ class JournalsController < ApplicationController
     allowed_access?(@user)
     @journal = Journal.new(journal_params)
     if @journal.save 
-      redirect_to user_journal_path(@user, @journal)
+      return redirect_to user_journal_path(@user, @journal)
     else 
       render :new 
     end 
@@ -47,7 +44,7 @@ class JournalsController < ApplicationController
     @user = User.find_by(params[:journal][:user_id])
     allowed_access?(@journal)
     if @journal.update(journal_params)
-      redirect_to user_journal_path(@user, @journal), notice: "Your journal was successfully updated."
+      return redirect_to user_journal_path(@user, @journal), notice: "Your journal was successfully updated."
     else 
       render :edit
     end 
