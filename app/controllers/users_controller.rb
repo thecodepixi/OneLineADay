@@ -72,10 +72,8 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     session.delete :user_id 
-    # user moods need to be destroyed independently 
-    @user.moods.destroy_all 
     # on destroy, user journals and days are destroyed automatically 
-    @user.destory 
+    @user.destroy 
 
     redirect_to root_path, notice: "Your account has been deleted. We miss you already!"
   end 

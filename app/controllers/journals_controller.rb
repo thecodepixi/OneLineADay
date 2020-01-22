@@ -51,9 +51,8 @@ class JournalsController < ApplicationController
   end 
 
   def destroy
-    @user = User.find_by(params[:user_id])
     @journal = Journal.find(params[:id])
-    allowed_acess?(@journal)
+    @user = @journal.user 
     @journal.delete 
 
     redirect_to user_journals_path(@user), notice: "Journal successfully deleted."

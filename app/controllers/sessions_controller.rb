@@ -15,8 +15,8 @@ class SessionsController < ApplicationController
       elsif auth_hash[:provider] == "facebook"
         @user.auth_hash = auth_hash[:info]
         @user.name = auth_hash[:info][:name]
-        # facebook accounts don't have 'nicknames', so reuse :name as username
-        @user.username = auth_hash[:info][:name]
+        # facebook accounts don't have 'nicknames', so reuse :name as username (remove spaces)
+        @user.username = auth_hash[:info][:name].split.join
       end 
       # set password to a random string integer (9-10 digits long), b/c password is required. 
       # TO DO: Allow users to reset randomly generated password, or choose a password during account creation... 

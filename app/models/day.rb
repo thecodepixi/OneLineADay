@@ -1,7 +1,7 @@
 class Day < ApplicationRecord
   # join table between users and their journals, and users, their journals and their moods
   belongs_to :user 
-  belongs_to :mood 
+  belongs_to :mood
   belongs_to :journal 
 
   validates :description, length: { maximum: 250, message: "Journal descriptions can only be 250 characters long." }, presence: true 

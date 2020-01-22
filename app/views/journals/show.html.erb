@@ -11,5 +11,5 @@
 </ul><br>
 <p><%= link_to "View All Previous Entries", journal_days_path(@journal), class: 'btn btn-dark' %>
 <p><%= link_to "Edit This Journal", edit_journal_path(@journal), class: 'btn btn-info' %>
-<p><%= link_to "Delete This Journal", user_journal_path(@user, @journal), method: 'delete', class: 'btn btn-danger', data: {confirm: "Are you sure? If you delete this journal, you will delete all associated daily updates..."}%>
+<p><%= link_to "Delete This Journal", journal_path(@journal), method: 'delete', class: 'btn btn-danger', data: {confirm: "Are you sure? If you delete this journal, you will delete all associated daily updates..."}%>
 </div>
