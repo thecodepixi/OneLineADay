@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   has_many :journals, dependent: :destroy
   has_many :days, through: :journals
-  has_many :moods, through: :days  
+  has_many :moods, through: :days
 
 end
   

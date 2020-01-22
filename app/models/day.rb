@@ -12,4 +12,12 @@ class Day < ApplicationRecord
     created_at.strftime("%A, %B %d, %Y")
   end 
 
+  def self.find_by_user(user)
+    where('user_id = ?', user.id)
+  end 
+
+  def self.find_by_mood_type(mood)
+    where('mood_id = ?', mood.id).order('created_at desc')
+  end 
+
 end

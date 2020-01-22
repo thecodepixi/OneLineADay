@@ -1,20 +1,23 @@
 class DaysController < ApplicationController
+  before_action :logged_in? 
+  before_action only: [:index, :new, :create] do 
+    set_journal 
+    allowed_access?(@journal)
+  end
+  before_action only: [:show, :edit, :update] do 
+    set_day 
+    allowed_access?(@day)
+  end 
 
   def index 
-    @journal = Journal.find(params[:journal_id])
-    allowed_access?(@journal)
   end 
 
   def show 
-    @day = Day.find_by(id: params[:id])
-    allowed_access?(@day)
-    @user = @day.user 
+    @user = current_user
     @mood = @day.mood 
   end 
 
   def new 
-    @journal = Journal.find(params[:journal_id])
-    allowed_access?(@journal)
     @user = @journal.user 
     already_updated?
     @day = Day.new 
@@ -22,8 +25,6 @@ class DaysController < ApplicationController
   end 
 
   def create
-    @journal = Journal.find(params[:journal_id])
-    allowed_access?(@journal)
     @user = @journal.user 
     @day = Day.new(day_params)
     if !params[:day][:mood][:mood_type].nil? && params[:day][:mood_id].blank?
@@ -40,14 +41,11 @@ class DaysController < ApplicationController
   end 
 
   def edit 
-    @day = Day.find_by(id: params[:id])
-    allowed_access?(@day)
     @mood = Mood.new 
   end 
 
   def update 
     @day = Day.find(params[:id])
-    allowed_access?(@day)
     @day.update(day_params)
     # create a new mood, when mood text_field is filled in and mood collection_select is blank. ! If both are filled in, the dropdown is the default ! 
     if !params[:day][:mood][:mood_type].nil? && params[:day][:mood_id].blank?
@@ -83,5 +81,13 @@ class DaysController < ApplicationController
       redirect_to user_journal_path(@user, @journal), alert: "You've already made your entry for today. Try editing it instead!"
     end 
   end 
+
+  def set_journal
+    @journal ||= Journal.find_by(id: params[:journal_id])
+  end 
+
+  def set_day 
+    @day ||= Day.find_by(id: params[:id])
+  end   
 
 end

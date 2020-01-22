@@ -6,15 +6,13 @@ class SessionsController < ApplicationController
     @user = User.find_or_initialize_by(uid: auth_hash[:extra][:raw_info][:id])
     # if User does not already exist in the DB, create a new user account 
     if @user.id.nil? 
+      @user.auth_hash = auth_hash[:info]
+      @user.name = auth_hash[:info][:name]
       # github auth
       if auth_hash[:provider] == "github"
-        @user.auth_hash = auth_hash[:info]
-        @user.name = auth_hash[:info][:name]
         @user.username = auth_hash[:info][:nickname]
       # facebook auth 
       elsif auth_hash[:provider] == "facebook"
-        @user.auth_hash = auth_hash[:info]
-        @user.name = auth_hash[:info][:name]
         # facebook accounts don't have 'nicknames', so reuse :name as username (remove spaces)
         @user.username = auth_hash[:info][:name].split.join
       end 
