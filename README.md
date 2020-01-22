@@ -21,6 +21,7 @@ Fun! Yay! Have an idea for a way to expand the app, or found a bug?
 Make a new branch, make your changes, and submit a PR. Easy peasy lemon squeezy. 
 
 ## Project Stretch/Future Goals 
+  - Allow OmniAuth accounts to edit account info (currently not possible due to password auth requirement and OmniAuth randomly generated passwords)
   - Color coded moods 
   - Moods graphs/data vis 
   - Better UI (nicer buttons, better styling, other fonts)
