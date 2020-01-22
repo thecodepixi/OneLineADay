@@ -20,6 +20,14 @@ Once you have your account up and running, here are a few things you might want 
 Fun! Yay! Have an idea for a way to expand the app, or found a bug? 
 Make a new branch, make your changes, and submit a PR. Easy peasy lemon squeezy. 
 
+## Project Stretch/Future Goals 
+  - Color coded moods 
+  - Moods graphs/data vis 
+  - Better UI (nicer buttons, better styling, other fonts)
+  - Photo upload option (to become a daily photo journal)
+    - Gallery view for photo updates 
+
+
 ## License
 
 Copyright 2019
