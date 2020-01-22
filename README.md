@@ -7,6 +7,7 @@ You can create a native account, or log in using either Facebook or GitHub (enab
 
 ## To Run This App: 
 *This app will be deployed on Heroku shortly...* 
+
 However, you can fork and clone the repo and run using `rails s` 
 Run `rails db:seed` first to use the included `seeds.rb` file to test things out, or feel free to create your own! 
 

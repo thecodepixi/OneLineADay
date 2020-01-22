@@ -51,11 +51,11 @@ class JournalsController < ApplicationController
   end 
 
   def destroy
-    @journal = Journal.find(params[:id])
-    @user = @journal.user 
-    @journal.delete 
+    journal = Journal.find(params[:id])
+    user = journal.user 
+    journal.delete 
 
-    redirect_to user_journals_path(@user), notice: "Journal successfully deleted."
+    redirect_to user_journals_path(user), notice: "Journal successfully deleted."
   end 
 
   private 

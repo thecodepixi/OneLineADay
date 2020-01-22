@@ -70,10 +70,10 @@ class UsersController < ApplicationController
   end 
 
   def destroy
-    @user = User.find(params[:id])
+    user = User.find(params[:id])
     session.delete :user_id 
     # on destroy, user journals and days are destroyed automatically 
-    @user.destroy 
+    user.destroy 
 
     redirect_to root_path, notice: "Your account has been deleted. We miss you already!"
   end 
