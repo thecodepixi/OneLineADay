@@ -8,7 +8,7 @@ class MoodsController < ApplicationController
 
   def index
     @user = User.find_by(id: params[:user_id])
-    @moods = @user.moods.group('mood_type')
+    @moods = @user.moods.distinct
   end 
 
   def show 
