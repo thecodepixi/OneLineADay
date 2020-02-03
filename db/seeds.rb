@@ -16,21 +16,21 @@
 #   end 
 # end 
 
-# #CREATE MOODS
-# moods = ["energetic", "lonely", "depressed", "optimistic", "angry", "nervous", "stressed", "joyful"]
+#CREATE MOODS
+moods = ["energetic", "lonely", "depressed", "optimistic", "angry", "nervous", "stressed", "joyful", "hopeful", "vibrant", "tired"]
 
-# moods.each do |mood|
-#   Mood.create(mood_type: mood) 
-# end 
+moods.each do |mood|
+  Mood.create(mood_type: mood) 
+end 
 
-#CREATE FAKE DAYS WITH RANDOM MOODS AND DATES
-Journal.all.each do |journal| 
-  until journal.days.count == 15 do 
-    day = journal.days.build 
-    day.description = Faker::Hipster.sentence(word_count: 5)
-    day.user = journal.user
-    day.mood = Mood.all.sample 
-    day.created_at = Faker::Date.between(from: 2.years.ago, to: Date.today)
-    day.save 
-  end 
+# #CREATE FAKE DAYS WITH RANDOM MOODS AND DATES
+# Journal.all.each do |journal| 
+#   until journal.days.count == 15 do 
+#     day = journal.days.build 
+#     day.description = Faker::Hipster.sentence(word_count: 5)
+#     day.user = journal.user
+#     day.mood = Mood.all.sample 
+#     day.created_at = Faker::Date.between(from: 2.years.ago, to: Date.today)
+#     day.save 
+#   end 
 end 
