@@ -21,8 +21,6 @@ gem 'jbuilder'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 gem 'bcrypt' 
-gem 'bootstrap',  '~>4.3.1'
-gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-facebook'
