@@ -1,4 +1,4 @@
-Journals.destroy_all 
+Journal.destroy_all 
 Mood.destroy_all
 
 # User.create(name: 'Demo User', username:'DemoUser', password: 'password')
