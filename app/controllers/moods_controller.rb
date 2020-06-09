@@ -14,7 +14,7 @@ class MoodsController < ApplicationController
   def show 
     @user = User.find_by(id: params[:user_id])
     @mood = Mood.find_by(id: params[:id])
-    @days = Day.find_by_user(@user).find_by_mood_type(@mood)
+    @days = Day.find_by_user(@user).find_by_mood(@mood)
   end
 
   def journal_index 

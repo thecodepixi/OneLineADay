@@ -16,7 +16,7 @@ class Day < ApplicationRecord
     where('user_id = ?', user.id)
   end 
 
-  def self.find_by_mood_type(mood)
+  def self.find_by_mood(mood)
     where('mood_id = ?', mood.id).order('created_at desc')
   end 
 

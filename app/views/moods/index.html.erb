@@ -3,7 +3,7 @@
 <ul class='list-group list-group-horizontal-lg flex-wrap'>
 <% @moods.each do |mood| %>
   <li class='list-group-item'><a type="button" class="btn btn-outline-info btn-lg" href="/users/<%= @user.id %>/moods/<%= mood.id %>">
-    <%= mood.mood_type %> <span class="badge badge-light"><%= @user.days.where('mood_id = ?', mood.id).count %></span>
+    <%= mood.mood_type %> <span class="badge badge-light"><%= @user.days.find_by_mood(mood).count %></span>
   </a>
 <% end %>
 </ul>
