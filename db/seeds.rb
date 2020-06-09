@@ -1,10 +1,10 @@
-Journal.destroy_all 
 Mood.destroy_all
 
 # User.create(name: 'Demo User', username:'DemoUser', password: 'password')
 
 #CREATE FAKE JOURNALS:
 User.all.each do |user|
+  user.journals.destroy_all
   until user.journals.count == 5 do 
     Journal.create(title: Faker::Book.title, mantra: Faker::Movie.quote, user_id: user.id)
   end 
