@@ -1,13 +1,14 @@
-User.destroy_all 
+User.journals.destroy_all 
+Mood.destroy_all
 
-User.create(name: 'Demo User', username:'DemoUser', password: 'password')
+# User.create(name: 'Demo User', username:'DemoUser', password: 'password')
 
-#CREATE FAKE JOURNALS:
-User.all.each do |user|
-  until user.journals.count == 5 do 
-    Journal.create(title: Faker::Book.title, mantra: Faker::Movie.quote, user_id: user.id)
-  end 
-end 
+# #CREATE FAKE JOURNALS:
+# User.all.each do |user|
+#   until user.journals.count == 5 do 
+#     Journal.create(title: Faker::Book.title, mantra: Faker::Movie.quote, user_id: user.id)
+#   end 
+# end 
 
 #CREATE MOODS
 moods = ["energetic", "lonely", "depressed", "optimistic", "angry", "nervous", "stressed", "joyful", "hopeful", "vibrant", "tired"]
