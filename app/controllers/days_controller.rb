@@ -47,7 +47,8 @@ class DaysController < ApplicationController
   def update 
     @day = Day.find(params[:id])
     @day.update(day_params)
-    # create a new mood, when mood text_field is filled in and mood collection_select is blank. ! If both are filled in, the dropdown is the default ! 
+    # create a new mood, when mood text_field is filled in and mood collection_select is blank. 
+    # ! If both are filled in, the dropdown is the default ! 
     if !params[:day][:mood][:mood_type].nil? && params[:day][:mood_id].blank?
       @mood = Mood.find_or_initialize_by(mood_type: params[:day][:mood][:mood_type])
       if @mood.save 
